@@ -7,7 +7,7 @@ const handleMobileNet = async () => {
 };
 
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(windowWidth, windowHeight);
   webcam = createCapture(VIDEO);
   webcam.hide();
   mobilenet = ml5.imageClassifier("MobileNet", webcam, handleMobileNet);
@@ -16,8 +16,9 @@ function setup() {
 function draw() {
   fill(0);
   textAlign(CENTER);
-  image(webcam, 0, 0);
-  rect(0, height - 50, width, height);
+  image(webcam, 0, 0, width, height);
+  rect(0, height / 1.1, width, height);
   fill(255);
-  if (result) text(result[0].label, width / 2, height - 20);
+  textSize(20);
+  if (result) text(result[0].label, width / 2, height / 1.05);
 }
